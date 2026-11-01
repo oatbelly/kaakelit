@@ -13,7 +13,8 @@
       "cacheVariables": {
         "CMAKE_C_STANDARD": "23",
         "CMAKE_CXX_STANDARD": "17",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "KAAKELIT_USE_SANITIZERS": false
       }
     },
     {
@@ -22,12 +23,19 @@
       "inherits": [
         "base"
       ],
+      "toolchainFile": "${sourceDir}/cmake/toolchains/gnu.cmake",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++",
-        "CMAKE_C_FLAGS_DEBUG_INIT": "-Wall -Wextra -Werror",
-        "CMAKE_CXX_FLAGS_DEBUG_INIT": "-Wall -Wextra -Werror"
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "debug-san",
+      "displayName": "GCC Debug with Sanitizers",
+      "inherits": [
+        "debug"
+      ],
+      "cacheVariables": {
+        "KAAKELIT_USE_SANITIZERS": true
       }
     }
   ],
