@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  archlinux:
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    strategy:
+      matrix:
+        cmake_preset: [debug]
+    steps:
+      - name: Install dependencies
+        run: pacman -S --noconfirm --needed git gcc cmake ninja gtest
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake --preset ${{ matrix.cmake_preset }}
+      - name: Build
+        run: cmake --build --preset ${{ matrix.cmake_preset }}
+      - name: Test
+        run: ctest --preset ${{ matrix.cmake_preset }}
+
+  msys2-ucrt64:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        cmake_preset: [debug]
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          pacboy: >-
+            gcc:p
+            cmake:p
+            ninja:p
+            gtest:p
+      - name: Configure
+        run: cmake --preset ${{ matrix.cmake_preset }}
+      - name: Build
+        run: cmake --build --preset ${{ matrix.cmake_preset }}
+      - name: Test
+        run: ctest --preset ${{ matrix.cmake_preset }}
