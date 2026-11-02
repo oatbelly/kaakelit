@@ -43,12 +43,20 @@
     {
       "name": "debug",
       "configurePreset": "debug"
+    },
+    {
+      "name": "debug-san",
+      "configurePreset": "debug-san"
     }
   ],
   "testPresets": [
     {
       "name": "debug",
       "configurePreset": "debug"
+    },
+    {
+      "name": "debug-san",
+      "configurePreset": "debug-san"
     }
   ],
   "workflowPresets": [
@@ -67,6 +75,24 @@
         {
           "type": "test",
           "name": "debug"
+        }
+      ]
+    },
+    {
+      "name": "debug-san",
+      "displayName": "GCC Debug with Sanitizers",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "debug-san"
+        },
+        {
+          "type": "build",
+          "name": "debug-san"
+        },
+        {
+          "type": "test",
+          "name": "debug-san"
         }
       ]
     }
