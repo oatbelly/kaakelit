@@ -12,7 +12,7 @@ jobs:
     container: archlinux:latest
     strategy:
       matrix:
-        cmake_preset: [debug]
+        cmake_preset: [debug, debug-san]
     steps:
       - name: Install dependencies
         run: pacman -Syu --noconfirm --needed git gcc cmake ninja gtest
