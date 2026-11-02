@@ -41,11 +41,11 @@ Additionally, tests require at least the following to build:
 To configure and build this project, you can run this set of commands:
 
 ```sh
-  cmake -B build -S . \
-    -DCMAKE_C_STANDARD=23 \
-    -DCMAKE_CXX_STANDARD=17 \
-    # Any other arguments here, e.g. -DKAAKELIT_BUILD_TESTS=OFF
-  cmake --build build
+cmake -B build -S . \
+  -DCMAKE_C_STANDARD=23 \
+  -DCMAKE_CXX_STANDARD=17 \
+  # Any other arguments here, e.g. -DKAAKELIT_BUILD_TESTS=OFF
+cmake --build build
 ```
 
 ### CMake presets
@@ -58,7 +58,7 @@ This project includes CMake presets for common build types (debug and release). 
 For example, to configure and build this project with Ninja, GCC and debug symbols, you can run this command:
 
 ```sh
-  cmake --build --preset debug
+cmake --build --preset debug
 ```
 
 ## Running tests
@@ -66,7 +66,7 @@ For example, to configure and build this project with Ninja, GCC and debug symbo
 You can run tests with this command:
 
 ```sh
-  ctest --test-dir build
+ctest --test-dir build
 ```
 
 > [!NOTE]
@@ -77,7 +77,7 @@ You might want to use the workflow presets which run each step (configure, build
 For example, to configure, build and test this project with Ninja, GCC and debug symbols, you can run this command:
 
 ```sh
-  cmake --workflow --preset debug
+cmake --workflow --preset debug
 ```
 
 ## Acknowledgements
